@@ -1,0 +1,521 @@
+* {
+    box-sizing: border-box;
+}
+
+.transaction-page {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(255, 176, 0, 0.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 10% 70%,
+            rgba(255, 118, 0, 0.045),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #080808 0%,
+            #0b0b0b 50%,
+            #080808 100%
+        );
+
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.transaction-header {
+    height: 80px;
+    padding: 0 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #1d1d1d;
+
+    background: rgba(8, 8, 8, 0.75);
+    backdrop-filter: blur(12px);
+
+    position: relative;
+    z-index: 2;
+}
+
+.transaction-logo {
+    text-decoration: none;
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.transaction-logo span:first-child {
+    color: #ffb000;
+    margin-right: 5px;
+}
+
+.transaction-logo span:last-child {
+    color: #ffb000;
+}
+
+.back-dashboard {
+    color: #888;
+    text-decoration: none;
+
+    font-size: 13px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    transition: 0.25s;
+}
+
+.back-dashboard:hover {
+    color: #ffb000;
+    border-color: rgba(255, 176, 0, 0.35);
+    background: rgba(255, 176, 0, 0.06);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.transaction-main {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 55px 25px 80px;
+
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.transaction-intro {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.transaction-label {
+    color: #ffb000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2.5px;
+
+    margin: 0 0 10px;
+}
+
+.transaction-intro h1 {
+    margin: 0;
+
+    font-size: 38px;
+
+    letter-spacing: -1px;
+}
+
+.transaction-intro h1 span {
+    color: #ffb000;
+}
+
+.transaction-intro > p:last-child {
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    max-width: 500px;
+
+    margin: 12px auto 0;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.transaction-card {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255, 176, 0, 0.07),
+            transparent 30%
+        ),
+        #111111;
+
+    border: 1px solid #272727;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.transaction-card-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #222;
+}
+
+.card-label {
+    color: #ffb000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin: 0 0 7px;
+}
+
+.transaction-card-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+.transaction-symbol {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #ffb000;
+
+    background: rgba(255, 176, 0, 0.10);
+
+    border: 1px solid rgba(255, 176, 0, 0.18);
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.transaction-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group label {
+    color: #c7c7c7;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-group label span {
+    color: #555;
+
+    font-size: 10px;
+
+    font-weight: 400;
+
+    margin-left: 7px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid #292929;
+
+    border-radius: 9px;
+
+    background: #0c0c0c;
+
+    color: #ffffff;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition: 0.25s;
+}
+
+.form-group input,
+.form-group select {
+    height: 48px;
+
+    padding: 0 14px;
+}
+
+.form-group textarea {
+    padding: 13px 14px;
+
+    resize: vertical;
+
+    min-height: 105px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #505050;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: rgba(255, 176, 0, 0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 176, 0, 0.07);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================
+   AMOUNT
+========================= */
+
+.amount-input {
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+
+    background: #0c0c0c;
+
+    border: 1px solid #292929;
+
+    border-radius: 9px;
+
+    transition: 0.25s;
+}
+
+.amount-input:focus-within {
+    border-color: rgba(255, 176, 0, 0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 176, 0, 0.07);
+}
+
+.amount-input > span {
+    color: #ffb000;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    padding-left: 15px;
+}
+
+.amount-input input {
+    border: none;
+
+    height: 100%;
+
+    background: transparent;
+
+    padding-left: 8px;
+
+    font-size: 16px;
+}
+
+.amount-input input:focus {
+    box-shadow: none;
+}
+
+
+/* Remove number input arrows */
+
+.amount-input input::-webkit-inner-spin-button,
+.amount-input input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* =========================
+   TWO COLUMN ROW
+========================= */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-top: 10px;
+}
+
+.cancel-btn {
+    color: #888;
+
+    text-decoration: none;
+
+    padding: 12px 20px;
+
+    border: 1px solid #292929;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    transition: 0.25s;
+}
+
+.cancel-btn:hover {
+    color: #ffffff;
+
+    background: #181818;
+}
+
+.submit-transaction-btn {
+    border: none;
+
+    padding: 13px 20px;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #ffbd00,
+        #ff8500
+    );
+
+    color: #111;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    box-shadow:
+        0 8px 25px rgba(255, 145, 0, 0.12);
+}
+
+.submit-transaction-btn span {
+    margin-left: 8px;
+
+    font-size: 15px;
+}
+
+.submit-transaction-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(255, 145, 0, 0.20);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 650px) {
+
+    .transaction-header {
+        padding: 0 20px;
+    }
+
+    .transaction-main {
+        padding: 40px 15px 60px;
+    }
+
+    .transaction-intro h1 {
+        font-size: 30px;
+    }
+
+    .transaction-card {
+        padding: 22px 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .cancel-btn,
+    .submit-transaction-btn {
+        text-align: center;
+        width: 100%;
+    }
+
+}

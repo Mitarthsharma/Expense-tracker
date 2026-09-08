@@ -3,6 +3,7 @@ import Register from './Pages/Register'
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
+import AddTransaction from './Pages/Addtransaction';
 const App = () => {
   return (
   
@@ -11,6 +12,7 @@ const App = () => {
         <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/transactions" element={<AddTransaction/>}/>
       </Routes>
       </BrowserRouter>
     

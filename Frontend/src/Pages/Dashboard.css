@@ -628,6 +628,7 @@
 .transaction-row {
     padding: 15px 10px;
     border-top: 1px solid #1d1d1d;
+     grid-template-columns: 2fr 1fr 1fr 1fr auto auto;
 }
 
 .transaction-name {
@@ -786,4 +787,57 @@
         grid-row: 1;
     }
 
+}
+.delete-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #aaa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    margin-left: 5px;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 70, 70, 0.12);
+    border-color: rgba(255, 70, 70, 0.25);
+    color: #ff6b6b;
+    transform: translateY(-1px);
+}
+
+.delete-btn:active {
+    transform: scale(0.94);
+}
+.edit-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #aaa;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+    background: rgba(255, 176, 0, 0.10);
+    border-color: rgba(255, 176, 0, 0.25);
+    color: #ffb000;
+    transform: translateY(-1px);
+}
+
+.edit-btn:active {
+    transform: scale(0.94);
 }

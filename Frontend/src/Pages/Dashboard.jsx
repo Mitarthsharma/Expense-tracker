@@ -1,10 +1,65 @@
 import React from "react";
 import "./Dashboard.css";
 import { Link, useNavigate } from "react-router-dom";
+import {useState,useEffect} from "react"
+import axios from "axios"
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const [summary,setSummary]=useState({
+        totalIncome:0,
+        totalExpense:0,
+        totalBalance:0
+    })
+    const [expenses,setExpense]=useState([])
+   useEffect(() => {
+    const getSummary = async () => {
+        try {
+            const response = await axios.get(
+                "http://localhost:3000/expense/summary",
+                {
+                    withCredentials: true
+                }
+            );
 
+            console.log(response.data);
+
+            setSummary(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getExpense=async ()=>{
+try{
+const expenseResponse=await axios.get("http://localhost:3000/expense/get",{
+    withCredentials:true
+})
+console.log(expenseResponse);
+setExpense(expenseResponse.data.expenses);
+}catch(error){
+    console.log(error);
+    
+}
+    }
+    getExpense();
+    getSummary();
+}, []);
+const deleteTransaction=async(id)=>{
+    try{
+    const response=await axios.delete(`http://localhost:3000/expense/delete/${id}`,{
+        withCredentials:true
+    })
+    console.log(response);
+    setExpense((prevExpenses) =>
+    prevExpenses.filter((expense) => expense._id !== id)
+);
+    alert("Transaction deleted successfully");}
+    catch(error){
+        console.log(error);
+        
+    }
+    
+}
     return (
         <div className="dashboard">
 
@@ -104,7 +159,7 @@ const Dashboard = () => {
                         <div className="card-top">
                             <div>
                                 <p>Total Balance</p>
-                                <h2>₹24,500</h2>
+                                <h2>₹{summary.totalBalance.toLocaleString("en-IN")}</h2>
                             </div>
 
                             <div className="card-icon">
@@ -127,7 +182,7 @@ const Dashboard = () => {
                         <div className="card-top">
                             <div>
                                 <p>Total Income</p>
-                                <h2>₹40,000</h2>
+                                <h2>₹{summary.totalIncome.toLocaleString("en-IN")}</h2>
                             </div>
 
                             <div className="card-icon income-icon">
@@ -150,7 +205,7 @@ const Dashboard = () => {
                         <div className="card-top">
                             <div>
                                 <p>Total Expenses</p>
-                                <h2>₹15,500</h2>
+                                <h2>₹{summary.totalExpense.toLocaleString("en-IN")}</h2>
                             </div>
 
                             <div className="card-icon expense-icon">
@@ -373,116 +428,58 @@ const Dashboard = () => {
                         </div>
 
 
-                        <div className="transaction-row">
+                       {expenses.map((expense) => (
+    <div className="transaction-row" key={expense._id}>
 
-                            <div className="transaction-name">
-                                <div className="transaction-icon">
-                                    🛒
-                                </div>
+        <div className="transaction-name">
+            <div className="transaction-icon">
+                💰
+            </div>
 
-                                <div>
-                                    <strong>Groceries</strong>
-                                    <span>Weekly shopping</span>
-                                </div>
-                            </div>
+            <div>
+                <strong>{expense.title}</strong>
+                <span>{expense.description || "No description"}</span>
+            </div>
+        </div>
 
-                            <span className="transaction-category">
-                                Food
-                            </span>
+        <span className="transaction-category">
+            {expense.category}
+        </span>
 
-                            <span className="transaction-date">
-                                Sep 05, 2026
-                            </span>
+        <span className="transaction-date">
+            {new Date(expense.date).toLocaleDateString("en-IN")}
+        </span>
 
-                            <strong className="amount expense">
-                                -₹1,250
-                            </strong>
+        <strong
+            className={`amount ${
+                expense.type === "income"
+                    ? "income"
+                    : "expense"
+            }`}
+        >
+            {expense.type === "income" ? "+" : "-"}
+            ₹{expense.amount.toLocaleString("en-IN")}
+        </strong>
+        <button
+    className="edit-btn"
+>
+    ✏️
+</button>
+        <button className="delete-btn" onClick={()=>{deleteTransaction(expense._id)}}>
+    🗑️
+</button>
 
-                        </div>
-
-
-                        <div className="transaction-row">
-
-                            <div className="transaction-name">
-                                <div className="transaction-icon">
-                                    🎬
-                                </div>
-
-                                <div>
-                                    <strong>Netflix</strong>
-                                    <span>Entertainment</span>
-                                </div>
-                            </div>
-
-                            <span className="transaction-category">
-                                Entertainment
-                            </span>
-
-                            <span className="transaction-date">
-                                Sep 04, 2026
-                            </span>
-
-                            <strong className="amount expense">
-                                -₹499
-                            </strong>
-
-                        </div>
+    </div>
+))}
 
 
-                        <div className="transaction-row">
-
-                            <div className="transaction-name">
-                                <div className="transaction-icon income">
-                                    ↑
-                                </div>
-
-                                <div>
-                                    <strong>Salary</strong>
-                                    <span>Monthly salary</span>
-                                </div>
-                            </div>
-
-                            <span className="transaction-category">
-                                Income
-                            </span>
-
-                            <span className="transaction-date">
-                                Sep 01, 2026
-                            </span>
-
-                            <strong className="amount income">
-                                +₹40,000
-                            </strong>
-
-                        </div>
+                        
 
 
-                        <div className="transaction-row">
+                        
 
-                            <div className="transaction-name">
-                                <div className="transaction-icon">
-                                    🚌
-                                </div>
 
-                                <div>
-                                    <strong>Transport</strong>
-                                    <span>Daily commute</span>
-                                </div>
-                            </div>
-
-                            <span className="transaction-category">
-                                Transport
-                            </span>
-
-                            <span className="transaction-date">
-                                Aug 31, 2026
-                            </span>
-
-                            <strong className="amount expense">
-                                -₹350
-                            </strong>
-
-                        </div>
+                      
 
                     </div>
 
