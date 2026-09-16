@@ -12,4 +12,6 @@ router.get("/me",authMiddleware,(req,res)=>{
         user:req.user
     })
 })
+router.post("/logout",authMiddleware,authController.userLogout);
+router.get("/me",authMiddleware,authController.getCurrentUser);
 module.exports=router

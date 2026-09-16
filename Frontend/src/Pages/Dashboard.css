@@ -488,6 +488,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    
 }
 
 .donut-chart::before {
@@ -536,21 +538,6 @@
     border-radius: 50%;
 }
 
-.food {
-    background: #ffb000;
-}
-
-.transport {
-    background: #ff7600;
-}
-
-.shopping {
-    background: #e85d04;
-}
-
-.other {
-    background: #555;
-}
 
 .category-item div {
     display: flex;
@@ -840,4 +827,81 @@
 
 .edit-btn:active {
     transform: scale(0.94);
+}
+.edit-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+    padding: 20px;
+}
+
+.edit-modal-content {
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    background: #111;
+    border: 1px solid rgba(255, 176, 0, 0.15);
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(255, 176, 0, 0.05);
+
+    color: white;
+}
+
+.edit-modal-content h2 {
+    margin: 0 0 25px;
+    font-size: 24px;
+}
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.edit-actions button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edit-actions button:first-child {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #aaa;
+}
+
+.edit-actions button:first-child:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.update-btn {
+    background: #ffb000;
+    color: #080808;
+}
+
+.update-btn:hover {
+    background: #ffc333;
+    transform: translateY(-1px);
+}
+
+.update-btn:active {
+    transform: scale(0.97);
 }

@@ -11,28 +11,49 @@ const [type, setType] = useState("expense");
 const [description, setDescription] = useState("");
 const [date, setDate] = useState("");
 
-const transaction=async(e)=>{
+const transaction = async (e) => {
     e.preventDefault();
-    try{
-const response=await axios.post("http://localhost:3000/expense/create",{
-    title,amount,category,type,description,date
-},{withCredentials:true})
-console.log(response);
-alert("Transaction added successfully");
-setTitle("")
-setAmount("")
-setCategory("")
-setType("expense")
-setDescription("")
-setDate("")
 
-}catch(error){
-    console.log(error);
-    
-}
+    try {
+        setLoading(true);
+        setError("");
 
+        const response = await axios.post(
+            "http://localhost:3000/expense/create",
+            {
+                title,
+                amount,
+                category,
+                type,
+                description,
+                date
+            },
+            {
+                withCredentials: true
+            }
+        );
 
-}
+        console.log(response.data);
+
+        alert("Transaction added successfully");
+
+        setTitle("");
+        setAmount("");
+        setCategory("");
+        setType("expense");
+        setDescription("");
+        setDate("");
+
+    } catch (error) {
+        console.log(error);
+        setError(
+            error.response?.data?.message ||
+            "Failed to add transaction. Please try again."
+        );
+    } finally {
+        setLoading(false);
+    }
+};
     return (
         <div className="transaction-page">
 
@@ -252,14 +273,17 @@ setDate("")
                             >
                                 Cancel
                             </Link>
-
-                            <button
-                                type="submit"
-                                className="submit-transaction-btn"
-                            >
-                                Add Transaction
-                                <span>→</span>
-                            </button>
+{error && (
+    <p className="form-error">
+        {error}
+    </p>
+)}
+                           <button
+    type="submit"
+    disabled={loading}
+>
+    {loading ? "Adding..." : "Add Transaction"}
+</button>
 
                         </div>
 
